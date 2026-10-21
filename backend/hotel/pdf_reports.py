@@ -42,8 +42,8 @@ def _paragraph(value, style):
     return Paragraph(escape(str(value or "-")), style)
 
 
-def build_cash_report_pdf(*, hotel, report, movements, start, end, generated_at, filters):
-    """Render all filtered movements in a paginated A4 landscape document."""
+def build_cash_report_pdf(*, hotel, report, sections, start, end, generated_at, filters):
+    """Render the report in readable, paginated business sections."""
     output = BytesIO()
     doc = SimpleDocTemplate(
         output,
@@ -108,50 +108,54 @@ def build_cash_report_pdf(*, hotel, report, movements, start, end, generated_at,
             ]
         )
     )
-    story.extend([summary_table, Spacer(1, 6 * mm), Paragraph("Dettaglio movimenti", styles["Heading2"])])
-    story.append(Spacer(1, 2 * mm))
-
-    rows = [["Data e ora", "Camera / conto", "Direzione", "Importo", "Mancia", "Metodo", "Causale", "Operatore", "Turno"]]
-    for movement in movements:
-        rows.append(
+    story.extend([summary_table, Spacer(1, 6 * mm), Paragraph("Dettaglio per sezione", styles["Heading2"])])
+    for section in sections:
+        story.extend(
             [
-                _paragraph(movement.created_at.astimezone(start.tzinfo).strftime("%d/%m/%Y %H:%M"), small),
-                _paragraph(room_label(movement), small),
-                _paragraph("Entrata" if movement.direction == "in" else "Uscita", small),
-                _paragraph(money(movement.amount), amount),
-                _paragraph(money(movement.tip_amount) if movement.tip_amount else "-", amount),
-                _paragraph(method_label(movement.method), small),
-                _paragraph(movement.reason, small),
-                _paragraph(movement.created_by.get_full_name() or movement.created_by.email, small),
-                _paragraph(f"#{movement.shift_id}" if movement.shift_id else "-", small),
+                Spacer(1, 4 * mm),
+                Paragraph(f"{escape(section['label'])} - {money(section['total'])}", styles["Heading3"]),
+                Spacer(1, 1.5 * mm),
             ]
         )
-    if len(rows) == 1:
-        rows.append([_paragraph("Nessun movimento per i filtri selezionati.", normal)] + [""] * 8)
-
-    movements_table = Table(
-        rows,
-        colWidths=[27 * mm, 48 * mm, 21 * mm, 24 * mm, 21 * mm, 23 * mm, 36 * mm, 38 * mm, 16 * mm],
-        repeatRows=1,
-    )
-    movements_table.setStyle(
-        TableStyle(
-            [
-                ("BACKGROUND", (0, 0), (-1, 0), BRAND),
-                ("TEXTCOLOR", (0, 0), (-1, 0), colors.white),
-                ("FONTNAME", (0, 0), (-1, 0), "Helvetica-Bold"),
-                ("FONTSIZE", (0, 0), (-1, 0), 7),
-                ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
-                ("GRID", (0, 0), (-1, -1), 0.25, colors.HexColor("#E2E8F0")),
-                ("ROWBACKGROUNDS", (0, 1), (-1, -1), [colors.white, colors.HexColor("#F8FAFC")]),
-                ("LEFTPADDING", (0, 0), (-1, -1), 3),
-                ("RIGHTPADDING", (0, 0), (-1, -1), 3),
-                ("TOPPADDING", (0, 0), (-1, -1), 4),
-                ("BOTTOMPADDING", (0, 0), (-1, -1), 4),
-            ]
+        rows = [["Data e ora", "Camera / conto", "Direzione", "Importo", "Metodo", "Causale", "Operatore", "Turno"]]
+        for row in section["rows"]:
+            rows.append(
+                [
+                    _paragraph(row["display_date"], small),
+                    _paragraph(row["account"], small),
+                    _paragraph("Entrata" if row["direction"] == "in" else "Uscita", small),
+                    _paragraph(money(row["amount"]), amount),
+                    _paragraph(method_label(row["method"]), small),
+                    _paragraph(row["reason"], small),
+                    _paragraph(row["operator_name"], small),
+                    _paragraph(f"#{row['shift']}" if row["shift"] else "-", small),
+                ]
+            )
+        if len(rows) == 1:
+            rows.append([_paragraph("Nessun movimento nella sezione.", normal)] + [""] * 7)
+        movements_table = Table(
+            rows,
+            colWidths=[28 * mm, 55 * mm, 22 * mm, 26 * mm, 24 * mm, 44 * mm, 47 * mm, 18 * mm],
+            repeatRows=1,
         )
-    )
-    story.append(movements_table)
+        movements_table.setStyle(
+            TableStyle(
+                [
+                    ("BACKGROUND", (0, 0), (-1, 0), BRAND),
+                    ("TEXTCOLOR", (0, 0), (-1, 0), colors.white),
+                    ("FONTNAME", (0, 0), (-1, 0), "Helvetica-Bold"),
+                    ("FONTSIZE", (0, 0), (-1, 0), 7),
+                    ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
+                    ("GRID", (0, 0), (-1, -1), 0.25, colors.HexColor("#E2E8F0")),
+                    ("ROWBACKGROUNDS", (0, 1), (-1, -1), [colors.white, colors.HexColor("#F8FAFC")]),
+                    ("LEFTPADDING", (0, 0), (-1, -1), 3),
+                    ("RIGHTPADDING", (0, 0), (-1, -1), 3),
+                    ("TOPPADDING", (0, 0), (-1, -1), 4),
+                    ("BOTTOMPADDING", (0, 0), (-1, -1), 4),
+                ]
+            )
+        )
+        story.append(movements_table)
 
     def decorate(canvas, document):
         canvas.saveState()

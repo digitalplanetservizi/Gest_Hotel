@@ -234,6 +234,25 @@ export interface Report {
     expenses: string;
     balance: string;
   }[];
+  sections: ReportSection[];
+}
+export interface ReportSection {
+  key: 'rooms' | 'extras' | 'tips' | 'expenses' | 'other_income';
+  label: string;
+  total: string;
+  rows: {
+    id: string;
+    created_at: string;
+    display_date: string;
+    account: string;
+    direction: string;
+    amount: string;
+    method: string;
+    reason: string;
+    description: string;
+    operator_name: string;
+    shift: number | null;
+  }[];
 }
 export interface TipReport {
   period: 'week' | 'month' | 'year';

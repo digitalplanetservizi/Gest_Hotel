@@ -169,6 +169,86 @@ def operator_shift_totals(movements, zone):
     return result
 
 
+REPORT_SECTION_META = (
+    ("rooms", "Camere"),
+    ("extras", "Extra"),
+    ("tips", "Mance"),
+    ("expenses", "Spese e rimborsi"),
+    ("other_income", "Altre entrate"),
+)
+
+
+def payment_account(payment):
+    if payment.stay_id:
+        return f"Camera {payment.stay.room.number}"
+    rooms = sorted({stay.room.number for stay in payment.group.stays.all()})
+    return f"Gruppo {payment.group.name} - camere {', '.join(rooms) or '-'}"
+
+
+def report_sections(movements, zone):
+    """Split every movement once into the business section it belongs to.
+
+    A payment spanning rooms and extras is split by its allocations. Tips and
+    outgoing refunds/expenses are independent sections, so the final report is
+    readable without counting any amount twice.
+    """
+    movements = movements.select_related(
+        "created_by", "payment__stay__room", "payment__group"
+    ).prefetch_related(
+        Prefetch(
+            "payment__allocations",
+            queryset=m.PaymentAllocation.objects.select_related("charge__stay__room"),
+        ),
+        "payment__group__stays__room",
+    )
+    rows = {key: [] for key, _ in REPORT_SECTION_META}
+
+    def append(section, movement, amount, account="-"):
+        rows[section].append(
+            {
+                "id": f"{movement.pk}-{section}-{len(rows[section])}",
+                "created_at": movement.created_at.astimezone(zone).isoformat(),
+                "display_date": movement.created_at.astimezone(zone).strftime("%d/%m/%Y %H:%M"),
+                "account": account,
+                "direction": movement.direction,
+                "amount": str(amount),
+                "method": movement.method,
+                "reason": movement.reason,
+                "description": movement.description,
+                "operator_name": movement.created_by.get_full_name() or movement.created_by.email,
+                "shift": movement.shift_id,
+            }
+        )
+
+    for movement in movements:
+        if movement.direction == "out":
+            append("expenses", movement, movement.amount)
+            continue
+        if not movement.payment_id:
+            append("other_income", movement, movement.amount)
+            continue
+        for allocation in movement.payment.allocations.all():
+            section = "rooms" if allocation.charge.kind == "room" else "extras"
+            append(section, movement, allocation.amount, f"Camera {allocation.charge.stay.room.number}")
+        if movement.tip_amount:
+            append("tips", movement, movement.tip_amount, payment_account(movement.payment))
+
+    result = []
+    for key, label in REPORT_SECTION_META:
+        section_rows = rows[key]
+        if key == "other_income" and not section_rows:
+            continue
+        result.append(
+            {
+                "key": key,
+                "label": label,
+                "total": str(sum((Decimal(row["amount"]) for row in section_rows), ZERO)),
+                "rows": section_rows,
+            }
+        )
+    return result
+
+
 def report(params):
     start, end = period(params)
     movements = filtered_movements(params)
@@ -212,6 +292,7 @@ def report(params):
         "occupancy": occupancy,
         "operators": operators,
         "by_operator_shift": operator_shift_totals(movements, start.tzinfo),
+        "sections": report_sections(movements, start.tzinfo),
     }
 
 

@@ -105,6 +105,12 @@ class ReportFlowTests(TestCase):
         self.assertEqual(Decimal(response.data["expenses"]), Decimal("25.00"))
         self.assertEqual(Decimal(response.data["balance"]), Decimal("95.00"))
         self.assertEqual(Decimal(response.data["outstanding"]), Decimal("20.00"))
+        sections = {section["key"]: section for section in response.data["sections"]}
+        self.assertEqual(Decimal(sections["rooms"]["total"]), Decimal("100.00"))
+        self.assertEqual(Decimal(sections["extras"]["total"]), Decimal("20.00"))
+        self.assertEqual(Decimal(sections["tips"]["total"]), Decimal("0.00"))
+        self.assertEqual(Decimal(sections["expenses"]["total"]), Decimal("25.00"))
+        self.assertEqual(sections["rooms"]["rows"][0]["account"], "Camera A1")
         rows = response.data["by_operator_shift"]
         self.assertEqual(len(rows), 2)
         self.assertEqual(
@@ -143,9 +149,10 @@ class ReportFlowTests(TestCase):
         export = self.client.get(f"/api/v1/reports/export/?{query}")
         self.assertEqual(export.status_code, 200)
         rows = list(csv.reader(io.StringIO(export.content.decode("utf-8-sig")), delimiter=";"))
-        self.assertEqual(len(rows), 3)
-        self.assertTrue(all(row[1] == "out" for row in rows[1:]))
-        self.assertIn("'=formula non eseguibile", [row[5] for row in rows[1:]])
+        self.assertIn("SPESE E RIMBORSI", [row[0] for row in rows if row])
+        expense_rows = [row for row in rows if len(row) == 9 and row[2] == "Uscita"]
+        self.assertEqual(len(expense_rows), 2)
+        self.assertIn("'=formula non eseguibile", [row[6] for row in expense_rows])
         empty = self.client.get("/api/v1/reports/?start=2026-10-20&end=2026-10-22&shift=999999")
         self.assertEqual(empty.data["by_operator_shift"], [])
         for invalid in ("direction=other", "shift=abc", "shift=-1"):
@@ -158,6 +165,7 @@ class ReportFlowTests(TestCase):
         self.assertEqual(response.status_code, 200, response.content)
         self.assertEqual(response["Content-Type"], "application/pdf")
         self.assertIn("rapporto-cassa.pdf", response["Content-Disposition"])
+        self.assertIn("inline", response["Content-Disposition"])
         self.assertTrue(response.content.startswith(b"%PDF"))
         self.assertGreater(len(response.content), 2_000)
 

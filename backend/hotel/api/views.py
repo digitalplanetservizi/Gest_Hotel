@@ -3,6 +3,7 @@ import io
 import itertools
 import json
 import zipfile
+from datetime import timedelta
 
 from django.apps import apps
 from django.contrib.auth import authenticate, login, logout
@@ -478,27 +479,37 @@ class ExportReportView(APIView):
     def get(self, request):
         output = io.StringIO()
         writer = csv.writer(output, delimiter=";")
-        writer.writerow(
-            ["Data", "Direzione", "Importo EUR", "Metodo", "Causale", "Descrizione", "Operatore", "Turno"]
-        )
+        start, end = selectors.period(request.query_params)
+        report = selectors.report(request.query_params)
+        writer.writerow(["RAPPORTO DI CASSA"])
+        writer.writerow(["Periodo", start.date().isoformat(), (end - timedelta(days=1)).date().isoformat()])
+        writer.writerow(["Generato il", timezone.localtime().strftime("%d/%m/%Y %H:%M")])
+        writer.writerow([])
 
         def safe(value):
             value = str(value)
             return "'" + value if value.startswith(("=", "+", "-", "@", "\t", "\r")) else value
 
-        for row in selectors.filtered_movements(request.query_params).iterator(chunk_size=1000):
+        for section in report["sections"]:
+            writer.writerow([section["label"].upper(), f"Totale: {section['total']} EUR"])
             writer.writerow(
-                [
-                    row.created_at.isoformat(),
-                    row.direction,
-                    str(row.amount),
-                    row.method,
-                    safe(row.reason),
-                    safe(row.description),
-                    safe(row.created_by.email),
-                    row.shift_id or "",
-                ]
+                ["Data e ora", "Camera / conto", "Direzione", "Importo EUR", "Metodo", "Causale", "Descrizione", "Operatore", "Turno"]
             )
+            for row in section["rows"]:
+                writer.writerow(
+                    [
+                        row["display_date"],
+                        safe(row["account"]),
+                        "Entrata" if row["direction"] == "in" else "Uscita",
+                        row["amount"],
+                        row["method"],
+                        safe(row["reason"]),
+                        safe(row["description"]),
+                        safe(row["operator_name"]),
+                        f"#{row['shift']}" if row["shift"] else "",
+                    ]
+                )
+            writer.writerow([])
         response = HttpResponse("\ufeff" + output.getvalue(), content_type="text/csv; charset=utf-8")
         response["Content-Disposition"] = 'attachment; filename="report-cassa.csv"'
         return response
@@ -508,21 +519,16 @@ class PdfReportView(APIView):
     def get(self, request):
         start, end = selectors.period(request.query_params)
         report = selectors.report(request.query_params)
-        movements = (
-            selectors.filtered_movements(request.query_params)
-            .select_related("created_by", "payment__stay__room", "payment__group")
-            .prefetch_related("payment__group__stays__room")
-        )
         hotel, _ = m.HotelSettings.objects.get_or_create(pk=1)
         content = build_cash_report_pdf(
             hotel=hotel,
             report=report,
-            movements=movements,
+            sections=report["sections"],
             start=start,
             end=end,
             generated_at=timezone.now().astimezone(start.tzinfo),
             filters=request.query_params,
         )
         response = HttpResponse(content, content_type="application/pdf")
-        response["Content-Disposition"] = 'attachment; filename="rapporto-cassa.pdf"'
+        response["Content-Disposition"] = 'inline; filename="rapporto-cassa.pdf"'
         return response

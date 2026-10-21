@@ -15,11 +15,11 @@ import { FeedbackComponent } from '../../shared/feedback.component';
         <p class="subtitle">Entrate, uscite e saldi basati sui movimenti effettivi.</p>
       </div>
       <div class="flex flex-wrap gap-2">
-        <button class="btn-secondary" (click)="export()" [disabled]="loading() || exporting() || exportingPdf()">
+        <button class="btn-secondary" (click)="export()" [disabled]="loading() || exporting()">
           {{ exporting() ? 'Esportazione…' : '↓ Esporta CSV' }}
         </button>
-        <button class="btn" (click)="exportPdf()" [disabled]="loading() || exporting() || exportingPdf()">
-          {{ exportingPdf() ? 'Preparazione PDF…' : '↓ Apri PDF rapporto' }}
+        <button class="btn" (click)="openPdf()" [disabled]="loading() || exporting()">
+          ↗ Apri PDF rapporto
         </button>
       </div>
     </div>
@@ -118,49 +118,56 @@ import { FeedbackComponent } from '../../shared/feedback.component';
           </tbody>
         </table>
       </div>
-      <h2 class="mb-3 font-semibold">Dettaglio movimenti</h2>
-      @if (d.movements_count > d.movements.length) {
-        <p class="mb-3 rounded-lg bg-amber-50 p-3 text-sm text-amber-800">
-          Mostrati {{ d.movements.length }} movimenti su {{ d.movements_count }}. Restringi i filtri
-          oppure esporta il CSV per il dettaglio completo.
-        </p>
+      <h2 class="mb-3 font-semibold">Dettaglio per sezione</h2>
+      @for (section of d.sections; track section.key) {
+        <section class="mb-6">
+          <div class="mb-3 flex items-center justify-between gap-3">
+            <h3 class="font-semibold text-slate-800">{{ section.label }}</h3>
+            <span class="badge">{{ section.total | currency: 'EUR' }}</span>
+          </div>
+          <div class="table-wrap">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Data</th>
+                  <th>Camera / conto</th>
+                  <th>Causale</th>
+                  <th>Operatore</th>
+                  <th>Metodo</th>
+                  <th>Turno</th>
+                  <th>Importo</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (row of section.rows; track row.id) {
+                  <tr>
+                    <td>{{ row.created_at | date: 'dd/MM/yy HH:mm' }}</td>
+                    <td>{{ row.account }}</td>
+                    <td>
+                      {{ row.reason }}
+                      @if (row.description) {
+                        <p class="text-xs text-slate-400">{{ row.description }}</p>
+                      }
+                    </td>
+                    <td>{{ row.operator_name }}</td>
+                    <td>{{ method(row.method) }}</td>
+                    <td>{{ row.shift === null ? 'Senza turno' : '#' + row.shift }}</td>
+                    <td [class.text-red-600]="row.direction === 'out'" [class.text-emerald-600]="row.direction === 'in'">
+                      {{ row.amount | currency: 'EUR' }}
+                    </td>
+                  </tr>
+                } @empty {
+                  <tr>
+                    <td colspan="7" class="py-7 text-center text-slate-500">
+                      Nessun movimento nella sezione.
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </section>
       }
-      <div class="table-wrap">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Data</th>
-              <th>Descrizione</th>
-              <th>Operatore</th>
-              <th>Metodo</th>
-              <th>Entrata</th>
-              <th>Uscita</th>
-            </tr>
-          </thead>
-          <tbody>
-            @for (m of d.movements; track m.id) {
-              <tr>
-                <td>{{ m.created_at | date: 'dd/MM/yy HH:mm' }}</td>
-                <td>{{ m.description }}</td>
-                <td>{{ m.operator_name }}</td>
-                <td>{{ method(m.method) }}</td>
-                <td class="text-emerald-600">
-                  {{ m.direction === 'in' ? (m.amount | currency: 'EUR') : '—' }}
-                </td>
-                <td class="text-red-600">
-                  {{ m.direction === 'out' ? (m.amount | currency: 'EUR') : '—' }}
-                </td>
-              </tr>
-            } @empty {
-              <tr>
-                <td colspan="6" class="py-8 text-center text-slate-500">
-                  Nessun movimento per i filtri selezionati.
-                </td>
-              </tr>
-            }
-          </tbody>
-        </table>
-      </div>
     }`,
 })
 export class ReportsComponent {
@@ -172,7 +179,6 @@ export class ReportsComponent {
   readonly data = signal<Report | null>(null);
   readonly loading = signal(false);
   readonly exporting = signal(false);
-  readonly exportingPdf = signal(false);
   readonly error = signal('');
   readonly form = this.fb.group({
     start: today().slice(0, 8) + '01',
@@ -231,18 +237,9 @@ export class ReportsComponent {
       this.exporting.set(false);
     }
   }
-  async exportPdf() {
-    this.exportingPdf.set(true);
+  openPdf() {
     this.error.set('');
-    try {
-      saveBlob(
-        await firstValueFrom(this.api.download('reports/pdf/', this.params())),
-        `rapporto-cassa-${this.form.controls.start.value}-${this.form.controls.end.value}.pdf`,
-      );
-    } catch (e) {
-      this.error.set(errorMessage(e));
-    } finally {
-      this.exportingPdf.set(false);
-    }
+    const query = new URLSearchParams(this.params()).toString();
+    window.open(`/api/v1/reports/pdf/?${query}`, '_blank', 'noopener');
   }
 }
