@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voce listino — V2</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="../assets/css/mockup.css">
+</head>
+<body class="mockup min-h-screen" data-page="listino">
+<main class="p-6 max-w-xl mx-auto admin-only">
+    <h1 class="text-xl font-bold mb-6">Modifica voce listino</h1>
+    <div class="mk-card p-6 space-y-4">
+        <div><label class="text-sm block mb-1">Codice</label><input class="mk-input" value="BAR-CAFF"></div>
+        <div><label class="text-sm block mb-1">Descrizione</label><input class="mk-input" value="Caffè bar"></div>
+        <div><label class="text-sm block mb-1">Categoria</label><select class="mk-input"><option>Consumazione bar</option><option>Servizio extra</option><option>Camera</option></select></div>
+        <div class="grid grid-cols-2 gap-4">
+            <div><label class="text-sm block mb-1">Prezzo (€)</label><input class="mk-input" value="2,50"></div>
+            <div><label class="text-sm block mb-1">Unità</label><select class="mk-input"><option>pz</option><option>giorno</option><option>forfait</option></select></div>
+        </div>
+        <div><label class="text-sm block mb-1">Stato</label><select class="mk-input"><option>Attiva</option><option>Disattivata</option></select></div>
+        <div class="flex gap-3"><button class="mk-btn-primary">Salva</button><a href="index.html" class="mk-btn-secondary">Annulla</a></div>
+    </div>
+</main>
+<script src="../assets/js/navigation.js"></script>
+</body></html>

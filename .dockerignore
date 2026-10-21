@@ -1,0 +1,16 @@
+.git
+.env
+.env.*
+.venv
+**/node_modules
+**/dist
+**/.angular
+**/__pycache__
+**/*.sqlite3
+backups
+test-results
+.local
+tmp/pdfs
+mockup
+wireframes
+

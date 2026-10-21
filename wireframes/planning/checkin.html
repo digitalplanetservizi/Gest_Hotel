@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Check-in — Wireframe V2</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="../assets/css/wireframe.css">
+</head>
+<body class="wireframe min-h-screen" data-page="planning">
+<span class="wf-badge">V2</span>
+<main class="p-6 max-w-3xl mx-auto">
+    <h1 class="text-xl font-bold mb-2">Scheda check-in (consultazione)</h1>
+    <div class="wf-annotation mb-4">Vista completa dati ingresso · elenco check-in · form nuovo (?nuovo=1)</div>
+    <div class="wf-box p-4 mb-4">
+        <p class="font-bold mb-2">Camera 203 — Tommaso · HB</p>
+        <p class="text-sm">Check-in 25/08 · Gruppo Comune Pozzuoli · Etichetta · Colore · Note</p>
+    </div>
+    <div class="wf-box p-4 mb-4">
+        <h2 class="font-bold mb-2">Check-in recenti</h2>
+        <table class="wf-table"><tr><th>Data</th><th>Cam</th><th>Ospite</th><th></th></tr>
+        <tr><td>25/08</td><td>203</td><td>Tommaso</td><td><a href="checkin.html">Vedi</a></td></tr></table>
+    </div>
+    <a href="checkin.html?nuovo=1" class="wf-btn wf-btn-primary">+ Nuovo check-in</a>
+</main>
+<script src="../assets/js/navigation.js"></script>
+</body></html>

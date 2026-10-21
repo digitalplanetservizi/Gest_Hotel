@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Tempio V2 — Scheda funzionalità A4</title>
+    <link href="https://fonts.bunny.net/css?family=inter:400,500,600,700&display=swap" rel="stylesheet">
+    <style>
+        :root { --brand: #7367f0; --brand-light: #ede9fe; --text: #1f2937; --muted: #6b7280; --border: #e5e7eb; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; font-size: 10.5pt; line-height: 1.5; color: var(--text); background: #e5e7eb; }
+        .screen-toolbar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: #fff; border-bottom: 1px solid var(--border); padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; }
+        .btn { padding: 8px 16px; border-radius: 8px; font-weight: 600; font-size: 13px; text-decoration: none; border: none; cursor: pointer; }
+        .btn-primary { background: var(--brand); color: #fff; }
+        .btn-secondary { background: #fff; border: 1px solid var(--border); color: var(--text); }
+        .document-wrap { padding: 80px 24px 48px; display: flex; flex-direction: column; align-items: center; gap: 24px; }
+        .page { width: 210mm; min-height: 297mm; background: #fff; padding: 18mm 16mm; box-shadow: 0 4px 24px rgba(0,0,0,.12); position: relative; }
+        .page-header { border-bottom: 2px solid var(--brand); padding-bottom: 8px; margin-bottom: 16px; display: flex; justify-content: space-between; }
+        .page-header .brand { font-size: 14pt; font-weight: 700; color: var(--brand); }
+        h1 { font-size: 22pt; color: var(--brand); margin-bottom: 8px; }
+        h2 { font-size: 13pt; color: var(--brand); margin: 16px 0 8px; border-bottom: 1px solid var(--brand-light); padding-bottom: 4px; }
+        ul { margin: 8px 0 8px 18px; }
+        li { margin-bottom: 4px; }
+        table { width: 100%; border-collapse: collapse; font-size: 9pt; margin: 10px 0; }
+        th, td { border: 1px solid var(--border); padding: 6px 8px; text-align: left; }
+        th { background: var(--brand-light); color: var(--brand); }
+        .checklist { list-style: none; margin-left: 0; }
+        .checklist li { padding-left: 22px; position: relative; margin-bottom: 4px; }
+        .checklist li::before { content: '☐'; position: absolute; left: 0; color: var(--brand); font-weight: 700; }
+        .page-footer { position: absolute; bottom: 12mm; left: 16mm; right: 16mm; font-size: 8pt; color: var(--muted); border-top: 1px solid var(--border); padding-top: 6px; display: flex; justify-content: space-between; }
+        @media print { .screen-toolbar { display: none; } .document-wrap { padding: 0; } .page { box-shadow: none; page-break-after: always; } }
+    </style>
+</head>
+<body>
+    <div class="screen-toolbar">
+        <span>Hotel Tempio V2 — Scheda A4</span>
+        <div><a href="index.html" class="btn btn-secondary">Hub</a> <button class="btn btn-primary" onclick="window.print()">Stampa / PDF</button></div>
+    </div>
+    <div class="document-wrap">
+        <div class="page">
+            <div class="page-header"><div class="brand">Hotel Tempio V2</div><div style="font-size:9pt;color:var(--muted)">Planning · Extra · Cassa integrata</div></div>
+            <h1>Gestionale Planning</h1>
+            <p style="color:var(--muted);margin-bottom:16px">La cassa è gestita dal planning (check-in/out), non da foglio Excel giornaliero.</p>
+            <h2>1. Planning camere</h2>
+            <ul>
+                <li>Griglia camere × giorni con stati visivi (libera, occupata, gruppo)</li>
+                <li>Gruppi con <strong>colore univoco</strong> ed <strong>etichetta</strong> (es. Comune Pozzuoli)</li>
+                <li>Check-in con <strong>scheda consultabile</strong> (dati ospite, gruppo, etichetta, note) ed elenco check-in recenti</li>
+                <li>Scheda soggiorno per camera collegata al check-in</li>
+                <li>Check-out con conto camera + extra</li>
+            </ul>
+            <h2>2. Extra e listino</h2>
+            <ul>
+                <li>Listino prezzi creabile/aggiornabile (consumazioni bar, servizi extra)</li>
+                <li>Aggiunta extra sul conto camera con descrizione e importo</li>
+            </ul>
+            <h2>3. Pagamento al check-out</h2>
+            <ul>
+                <li>Stato <strong>Pagato</strong> / <strong>Da pagare</strong> anche <strong>parziale</strong> (camera pagata, extra in sospeso) con icone in planning</li>
+                <li>Dettaglio soggiorno + extra con <strong>data e ora</strong> di registrazione</li>
+                <li>Gruppi: conto per camera + <strong>conto unico gruppo</strong> dettagliato</li>
+                <li>Cassa e report: ogni incasso con <strong>data, ora e operatore</strong> (turni)</li>
+                <li>Causale di incasso selezionabile</li>
+                <li>Registrazione automatica movimento in Cassa</li>
+            </ul>
+            <h2>4. Causali e cassa</h2>
+            <ul>
+                <li>Anagrafica causali incasso e spesa (solo Admin)</li>
+                <li>Cassa: movimenti da check-out + uscite manuali</li>
+            </ul>
+            <h2>5. Magazzino detersivi</h2>
+            <ul>
+                <li>Articoli pulizia/lavanderia, carico/scarico, alert scorte</li>
+            </ul>
+            <div class="page-footer"><span>Hotel Tempio V2</span><span>Pagina 1 di 2</span></div>
+        </div>
+        <div class="page">
+            <div class="page-header"><div class="brand">Checklist validazione</div></div>
+            <h2>Ruoli</h2>
+            <table>
+                <tr><th>Funzione</th><th>Admin</th><th>Operatore</th></tr>
+                <tr><td>Planning, extra, check-out</td><td>Sì</td><td>Sì</td></tr>
+                <tr><td>Magazzino detersivi</td><td>Sì</td><td>Sì</td></tr>
+                <tr><td>Listino, causali, impostazioni gruppi</td><td>Sì</td><td>No</td></tr>
+            </table>
+            <h2>Checklist cliente</h2>
+            <ul class="checklist">
+                <li>Planning con colori gruppo ed etichette approvato</li>
+                <li>Flusso check-out pagato/da pagare chiaro</li>
+                <li>Extra da listino sul conto camera</li>
+                <li>Cassa collegata al planning (no Excel cassa giornaliera)</li>
+                <li>Causali incasso/spesa configurabili</li>
+                <li>Magazzino detersivi sufficiente</li>
+            </ul>
+            <p style="margin-top:24px;font-size:9pt">Demo: admin@hoteltempio.it · operatore@hoteltempio.it</p>
+            <div class="page-footer"><span>© 2026 — Anteprima non operativa</span><span>Pagina 2 di 2</span></div>
+        </div>
+    </div>
+</body>
+</html>

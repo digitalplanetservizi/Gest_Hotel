@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Planning — Wireframe V2</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.bunny.net/css?family=inter:400,500,600,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/wireframe.css">
+</head>
+<body class="wireframe min-h-screen" data-page="planning">
+<span class="wf-badge">WIREFRAME V2</span>
+<main class="p-6 lg:pl-72">
+    <h1 class="text-xl font-bold mb-2">Planning camere × giorni</h1>
+    <div class="wf-annotation mb-4">Gruppi = stesso colore + etichetta · icone: ✓ camera pagata · € extra da pagare · link conto gruppo</div>
+    <div class="wf-box p-4 overflow-x-auto">
+        <table class="wf-table">
+            <thead><tr><th>Cam</th><th>8</th><th>9</th><th>10</th><th>11</th></tr></thead>
+            <tbody>
+                <tr><td>202</td><td class="wf-plan-cell wf-plan-busy">Pozzuoli</td><td class="wf-plan-cell wf-plan-busy">Pozzuoli</td><td class="wf-plan-cell wf-plan-busy">Pozzuoli</td><td class="wf-plan-cell wf-plan-free">—</td></tr>
+                <tr><td>203</td><td class="wf-plan-cell wf-plan-busy">Tommaso ✓€</td><td class="wf-plan-cell wf-plan-busy">Tommaso ✓€</td><td class="wf-plan-cell wf-plan-busy wf-plan-due"><a href="checkout.html">OUT ✓€</a></td><td class="wf-plan-cell wf-plan-free">—</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <a href="soggiorno.html" class="wf-btn wf-btn-primary mt-4 inline-flex">Scheda soggiorno</a>
+    <a href="checkin.html" class="wf-btn mt-2 ml-2 inline-flex">Vedi check-in</a>
+    <a href="gruppo.html" class="wf-btn mt-2 ml-2 inline-flex">Conto gruppo Pozzuoli</a>
+</main>
+<script src="../assets/js/navigation.js"></script>
+</body></html>

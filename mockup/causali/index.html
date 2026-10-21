@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Causali — V2</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="../assets/css/mockup.css">
+</head>
+<body class="mockup min-h-screen" data-page="causali">
+<div class="lg:pl-64 admin-only">
+<header class="mk-topbar px-4 py-4 flex justify-between"><h1 class="text-xl font-bold">Causali incasso e spesa</h1><a href="form.html" class="mk-btn-primary text-sm">+ Nuova causale</a></header>
+<main class="p-6">
+    <div class="grid md:grid-cols-2 gap-4">
+        <div class="mk-card p-4">
+            <h2 class="font-semibold mb-3">Incasso</h2>
+            <ul class="space-y-2 text-sm"><li>Check-out camera · Extra · Caparra · Contanti · POS · Bonifico</li></ul>
+        </div>
+        <div class="mk-card p-4">
+            <h2 class="font-semibold mb-3">Spesa</h2>
+            <ul class="space-y-2 text-sm"><li>Forniture · Manutenzione · Detersivi · Altro</li></ul>
+        </div>
+    </div>
+    <div class="mk-card overflow-hidden mt-4">
+        <table class="mk-table"><thead><tr><th>Nome</th><th>Tipo</th><th>Attiva</th><th></th></tr></thead>
+        <tbody>
+            <tr><td>Check-out camera</td><td>Incasso</td><td>Sì</td><td><a href="form.html" class="mk-link text-sm">Modifica</a></td></tr>
+            <tr><td>Detersivi</td><td>Spesa</td><td>Sì</td><td><a href="form.html" class="mk-link text-sm">Modifica</a></td></tr>
+        </tbody></table>
+    </div>
+</main>
+</div>
+<script src="../assets/js/navigation.js"></script>
+</body></html>

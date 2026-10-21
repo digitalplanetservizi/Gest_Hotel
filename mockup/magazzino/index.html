@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8"><title>Magazzino detersivi — V2</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.bunny.net/css?family=inter:400,500,600,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/mockup.css">
+</head>
+<body class="mockup min-h-screen" data-page="magazzino">
+<div class="lg:pl-64 min-h-screen flex flex-col">
+<aside id="sidebar" class="mk-sidebar fixed inset-y-0 left-0 z-40 w-64 flex flex-col transform transition-transform duration-200 -translate-x-full lg:translate-x-0">
+    <nav class="flex-1 p-3 pt-4"><a href="../dashboard.html" data-nav="dashboard" class="flex px-3 py-2 text-sm rounded mb-1 text-white">Dashboard</a>
+    <a href="index.html" data-nav="magazzino" class="flex px-3 py-2 text-sm rounded mb-1 text-white">Magazzino</a></nav>
+</aside>
+<header class="mk-topbar px-4 py-4 lg:pl-64 flex justify-between"><div><h1 class="text-xl font-bold">Magazzino detersivi</h1><p class="text-sm text-gray-500">Solo prodotti pulizia e lavanderia</p></div>
+<div class="flex gap-2"><a href="movimenti.html" class="mk-btn-secondary text-sm">Carico/Scarico</a><a href="form.html" class="mk-btn-primary text-sm">+ Articolo</a></div></header>
+<main class="flex-1 p-6 lg:pl-72">
+    <div class="mk-card overflow-hidden">
+        <table class="mk-table">
+            <thead><tr><th>Codice</th><th>Prodotto</th><th>Giacenza</th><th>Scorta min.</th><th>Unità</th><th>Stato</th></tr></thead>
+            <tbody>
+                <tr><td>DET-001</td><td>Detergente multiuso 5L</td><td class="text-amber-600 font-semibold">3</td><td>5</td><td>lt</td><td><span class="mk-badge mk-badge-warning">Bassa</span></td></tr>
+                <tr><td>DET-002</td><td>Ammorbidente concentrato</td><td>12</td><td>4</td><td>lt</td><td><span class="mk-badge mk-badge-success">OK</span></td></tr>
+                <tr><td>DET-003</td><td>Candeggina</td><td>0</td><td>6</td><td>lt</td><td><span class="mk-badge mk-badge-danger">Esaurito</span></td></tr>
+                <tr><td>DET-004</td><td>Sacchetti spazzatura 120L</td><td>8</td><td>10</td><td>rotolo</td><td><span class="mk-badge mk-badge-warning">Bassa</span></td></tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+</div>
+<script src="../assets/js/navigation.js"></script>
+</body></html>

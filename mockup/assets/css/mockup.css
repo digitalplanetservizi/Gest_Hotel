@@ -1,0 +1,360 @@
+/* Mockup Hotel Tempio — palette Associazione Smart (viola/indigo) */
+:root {
+    --brand-primary: #7367f0;
+    --brand-primary-dark: #5e50d3;
+    --brand-secondary: #82868b;
+    --brand-success: #28c76f;
+    --brand-danger: #ea5455;
+    --brand-warning: #ff9f43;
+    --brand-info: #00cfe8;
+    --brand-sidebar: #283046;
+    --brand-sidebar-active: #7367f0;
+    --brand-bg: #f8f8f8;
+}
+
+body.mockup {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--brand-bg);
+}
+
+.mk-preview-banner {
+    background: linear-gradient(90deg, #ede9fe, #e0e7ff);
+    border-bottom: 1px solid #c4b5fd;
+    color: #5b21b6;
+    font-size: 12px;
+    text-align: center;
+    padding: 6px;
+}
+
+.mk-sidebar {
+    background: var(--brand-sidebar);
+}
+
+.mk-sidebar a {
+    color: #d0d2d6;
+    transition: background 0.15s, color 0.15s;
+}
+
+.mk-sidebar a:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+}
+
+.mk-sidebar a.active {
+    background: var(--brand-sidebar-active);
+    color: #fff;
+    font-weight: 600;
+}
+
+.mk-sidebar a.admin-only.disabled {
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.mk-card {
+    background: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.06);
+    border: 1px solid #ebe9f1;
+}
+
+.mk-btn-primary {
+    background: var(--brand-primary);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 0.375rem;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background 0.15s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.mk-btn-primary:hover {
+    background: var(--brand-primary-dark);
+}
+
+.mk-btn-secondary {
+    background: #fff;
+    color: #5e5873;
+    border: 1px solid #d8d6de;
+    padding: 10px 20px;
+    border-radius: 0.375rem;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.mk-btn-secondary:hover {
+    background: #f8f8f8;
+}
+
+.mk-input {
+    border: 1px solid #d8d6de;
+    border-radius: 0.375rem;
+    padding: 10px 14px;
+    width: 100%;
+    font-size: 14px;
+    color: #5e5873;
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.mk-input:focus {
+    outline: none;
+    border-color: var(--brand-primary);
+    box-shadow: 0 0 0 3px rgba(115, 103, 240, 0.15);
+}
+
+.mk-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.mk-table th {
+    background: #f8f8f8;
+    color: #6e6b7b;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid #ebe9f1;
+}
+
+.mk-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid #f3f2f7;
+    font-size: 14px;
+    color: #5e5873;
+}
+
+.mk-table tr:hover td {
+    background: #fafafa;
+}
+
+.mk-kpi {
+    background: #fff;
+    border-radius: 0.5rem;
+    padding: 20px;
+    border: none;
+    box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.06);
+    position: relative;
+    overflow: hidden;
+}
+
+.mk-kpi-purple { background: linear-gradient(135deg, #7367f0, #9e95f5); color: #fff; }
+.mk-kpi-green { background: linear-gradient(135deg, #28c76f, #48da89); color: #fff; }
+.mk-kpi-red { background: linear-gradient(135deg, #ea5455, #f08182); color: #fff; }
+.mk-kpi-orange { background: linear-gradient(135deg, #ff9f43, #ffb976); color: #fff; }
+.mk-kpi-cyan { background: linear-gradient(135deg, #00cfe8, #1ce7ff); color: #fff; }
+.mk-kpi-blue { background: linear-gradient(135deg, #1e9ff2, #57b8f6); color: #fff; }
+
+.mk-kpi .mk-kpi-label { font-size: 13px; opacity: 0.9; margin-bottom: 4px; }
+.mk-kpi .mk-kpi-value { font-size: 26px; font-weight: 700; }
+
+.mk-kpi-white {
+    background: #fff;
+    border: 1px solid #ebe9f1;
+    box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.06);
+}
+
+.mk-kpi-white .mk-kpi-label { color: #6e6b7b; }
+.mk-kpi-white .mk-kpi-value { color: #5e5873; }
+
+.mk-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 10px;
+    border-radius: 9999px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.mk-badge-success { background: rgba(40, 199, 111, 0.12); color: #28c76f; }
+.mk-badge-warning { background: rgba(255, 159, 67, 0.12); color: #ff9f43; }
+.mk-badge-danger { background: rgba(234, 84, 85, 0.12); color: #ea5455; }
+.mk-badge-info { background: rgba(115, 103, 240, 0.12); color: #7367f0; }
+.mk-badge-gray { background: #f3f2f7; color: #6e6b7b; }
+
+.mk-link {
+    color: var(--brand-primary);
+    font-weight: 500;
+}
+
+.mk-link:hover {
+    color: var(--brand-primary-dark);
+    text-decoration: underline;
+}
+
+.mk-topbar {
+    background: #fff;
+    border-bottom: 1px solid #ebe9f1;
+}
+
+.mk-search {
+    background: #f8f8f8;
+    border: 1px solid #ebe9f1;
+    border-radius: 0.375rem;
+    padding: 8px 14px 8px 36px;
+    font-size: 14px;
+    width: 100%;
+    max-width: 320px;
+}
+
+.mk-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--brand-primary);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.mk-role-badge {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: rgba(115, 103, 240, 0.12);
+    color: var(--brand-primary);
+}
+
+.mk-section-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #5e5873;
+}
+
+.mk-section-sub {
+    font-size: 14px;
+    color: #6e6b7b;
+}
+
+.mk-filter-card {
+    background: #fff;
+    border-radius: 0.5rem;
+    padding: 20px;
+    box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.06);
+    margin-bottom: 20px;
+}
+
+.mk-summary-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #f3f2f7;
+    font-size: 14px;
+}
+
+.mk-summary-row:last-child {
+    border-bottom: none;
+    font-weight: 700;
+    font-size: 16px;
+    padding-top: 12px;
+}
+
+.mk-summary-row .label { color: #6e6b7b; }
+.mk-summary-row .value { color: #5e5873; font-weight: 600; }
+
+.mk-summary-row.positive .value { color: #28c76f; }
+.mk-summary-row.negative .value { color: #ea5455; }
+
+.mk-login-panel {
+    background: linear-gradient(135deg, #7367f0 0%, #5e50d3 100%);
+}
+
+.mk-stat-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 12px;
+    border-radius: 0.375rem;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.mk-stat-badge-green { background: rgba(40, 199, 111, 0.12); color: #28c76f; }
+.mk-stat-badge-purple { background: rgba(115, 103, 240, 0.12); color: #7367f0; }
+
+/* Planning griglia camere × giorni (V2) */
+.mk-plan-wrap { overflow-x: auto; }
+.mk-plan-table { border-collapse: separate; border-spacing: 2px; min-width: 900px; width: 100%; }
+.mk-plan-table th { background: #f8f8f8; font-size: 11px; font-weight: 600; padding: 8px 6px; text-align: center; color: #6e6b7b; border: 1px solid #ebe9f1; }
+.mk-plan-table td.mk-plan-room { background: #fff; font-weight: 600; font-size: 13px; padding: 8px 12px; border: 1px solid #ebe9f1; white-space: nowrap; position: sticky; left: 0; z-index: 2; }
+.mk-plan-cell { min-width: 72px; height: 44px; padding: 4px; vertical-align: top; border: 1px solid #ebe9f1; background: #f3f2f7; }
+.mk-plan-cell a { display: block; height: 100%; border-radius: 4px; padding: 4px 6px; font-size: 10px; line-height: 1.2; text-decoration: none; color: #fff; font-weight: 500; }
+.mk-plan-free { background: #f3f2f7; }
+.mk-plan-busy-grp-a { background: #7367f0; }
+.mk-plan-busy-grp-b { background: #28c76f; }
+.mk-plan-busy-grp-c { background: #ff9f43; }
+.mk-plan-busy-single { background: #1e9ff2; }
+.mk-plan-due { box-shadow: inset 0 0 0 2px #ea5455; }
+.mk-plan-label { display: block; font-size: 9px; opacity: 0.95; margin-top: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 64px; }
+.mk-legend { display: flex; flex-wrap: wrap; gap: 12px; font-size: 12px; color: #6e6b7b; margin-bottom: 12px; }
+.mk-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.mk-legend i { width: 14px; height: 14px; border-radius: 3px; display: inline-block; }
+
+/* Icone stato pagamento su planning e schede */
+.mk-plan-cell a { position: relative; padding-top: 14px; }
+.mk-pay-icons {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    display: flex;
+    gap: 2px;
+    line-height: 1;
+}
+.mk-pay-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: 700;
+    box-shadow: 0 1px 2px rgba(0,0,0,.25);
+}
+.mk-pay-icon-room {
+    background: #28c76f;
+    color: #fff;
+}
+.mk-pay-icon-room::after { content: '✓'; }
+.mk-pay-icon-extra {
+    background: #ff9f43;
+    color: #fff;
+}
+.mk-pay-icon-extra::after { content: '€'; font-size: 9px; }
+.mk-pay-icon-all {
+    background: #fff;
+    color: #28c76f;
+    border: 1px solid #28c76f;
+}
+.mk-pay-icon-all::after { content: '✓✓'; font-size: 8px; }
+
+.mk-pay-status-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+.mk-pay-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 500;
+}
+.mk-pay-chip-room-ok { background: rgba(40, 199, 111, 0.12); color: #28c76f; }
+.mk-pay-chip-extra-due { background: rgba(255, 159, 67, 0.15); color: #e67e22; }
+
+.mk-table .col-time { white-space: nowrap; font-variant-numeric: tabular-nums; color: #6e6b7b; font-size: 13px; }

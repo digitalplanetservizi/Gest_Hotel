@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Check-out camera 203 — V2</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.bunny.net/css?family=inter:400,500,600,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/mockup.css">
+</head>
+<body class="mockup min-h-screen" data-page="planning">
+<div class="mk-preview-banner">Anteprima V2</div>
+<div class="lg:pl-64 min-h-screen flex flex-col">
+<main class="flex-1 p-6 max-w-3xl mx-auto w-full">
+    <p class="text-sm text-gray-500 mb-2"><a href="soggiorno.html" class="mk-link">← Camera 203</a></p>
+    <h1 class="text-2xl font-bold mb-1">Check-out — Camera 203</h1>
+    <p class="text-gray-600 mb-4">HB - TOMMASO (Comune Pozzuoli) · 10/10/2026</p>
+
+    <div class="mk-pay-status-bar mb-4">
+        <span class="mk-pay-chip mk-pay-chip-room-ok">Camera già pagata (€ 360,00)</span>
+        <span class="mk-pay-chip mk-pay-chip-extra-due">Alla chiusura: incassare extra € 60,00</span>
+    </div>
+
+    <div class="mk-card p-6 mb-6">
+        <h2 class="font-semibold mb-4">Conto finale — dettaglio voci</h2>
+        <table class="mk-table mb-4 text-sm">
+            <thead><tr><th>Descrizione</th><th>Tipo</th><th>Data</th><th>Ora</th><th>Importo</th><th>Stato</th></tr></thead>
+            <tbody>
+                <tr><td>Soggiorno HB — 15 notti</td><td>Camera</td><td>—</td><td>—</td><td>€ 360,00</td><td><span class="mk-badge mk-badge-success">Pagato</span></td></tr>
+                <tr><td>Caffè bar (×2)</td><td>Consumazione</td><td>08/10/2026</td><td class="col-time">08:15</td><td>€ 5,00</td><td><span class="mk-badge mk-badge-warning">Da pagare</span></td></tr>
+                <tr><td>Late check-out</td><td>Servizio extra</td><td>09/10/2026</td><td class="col-time">11:05</td><td>€ 35,00</td><td><span class="mk-badge mk-badge-warning">Da pagare</span></td></tr>
+                <tr><td>Acqua 0,5L (×4)</td><td>Consumazione</td><td>09/10/2026</td><td class="col-time">19:22</td><td>€ 8,00</td><td><span class="mk-badge mk-badge-warning">Da pagare</span></td></tr>
+                <tr><td>Parcheggio (×3 giorni)</td><td>Servizio extra</td><td>07/10/2026</td><td class="col-time">14:30</td><td>€ 12,00</td><td><span class="mk-badge mk-badge-warning">Da pagare</span></td></tr>
+            </tbody>
+            <tfoot class="font-bold bg-gray-50">
+                <tr><td colspan="4" class="text-right">TOTALE</td><td>€ 420,00</td><td></td></tr>
+                <tr><td colspan="4" class="text-right text-amber-600">Da incassare ora (solo extra)</td><td>€ 60,00</td><td></td></tr>
+            </tfoot>
+        </table>
+
+        <div class="space-y-4 border-t pt-4">
+            <div><label class="text-sm font-medium block mb-1">Stato pagamento check-out</label>
+                <select class="mk-input max-w-xs"><option selected>Parziale — solo extra da saldare</option><option>Pagato (tutto)</option><option>Da pagare (tutto)</option></select>
+            </div>
+            <div><label class="text-sm font-medium block mb-1">Causale incasso</label>
+                <select class="mk-input max-w-xs"><option>Extra / consumazioni</option><option>Contanti</option><option>POS</option></select>
+            </div>
+            <div><label class="text-sm font-medium block mb-1">Importo da incassare ora (€)</label><input class="mk-input max-w-xs" value="60,00"></div>
+            <div class="grid sm:grid-cols-2 gap-4">
+                <div><label class="text-sm font-medium block mb-1">Data incasso</label><input type="date" class="mk-input" value="2026-10-10"></div>
+                <div><label class="text-sm font-medium block mb-1">Ora</label><input type="time" class="mk-input" value="10:30"></div>
+            </div>
+            <div><label class="text-sm font-medium block mb-1">Operatore (turno)</label>
+                <select class="mk-input max-w-xs"><option>Lucia Verdi</option><option>Marco Rossi</option></select>
+            </div>
+            <div><label class="text-sm font-medium block mb-1">Note check-out</label><textarea class="mk-input" rows="2"></textarea></div>
+        </div>
+    </div>
+
+    <div class="flex flex-wrap gap-3">
+        <button class="mk-btn-primary">Conferma check-out e registra in cassa</button>
+        <a href="index.html" class="mk-btn-secondary">Annulla</a>
+    </div>
+    <p class="text-xs text-gray-500 mt-4">In Cassa ogni incasso riporta data, ora e operatore per quadratura turni e report.</p>
+</main>
+</div>
+<script src="../assets/js/navigation.js"></script>
+</body></html>

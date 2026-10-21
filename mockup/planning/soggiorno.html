@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soggiorno camera 203 — V2</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.bunny.net/css?family=inter:400,500,600,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/mockup.css">
+</head>
+<body class="mockup min-h-screen" data-page="planning">
+<div class="mk-preview-banner">Anteprima V2</div>
+<div class="lg:pl-64 min-h-screen flex flex-col">
+<aside id="sidebar" class="mk-sidebar fixed inset-y-0 left-0 z-40 w-64 flex flex-col transform transition-transform duration-200 -translate-x-full lg:translate-x-0">
+    <nav class="flex-1 p-3 pt-4"><a href="index.html" data-nav="planning" class="flex px-3 py-2 text-sm rounded-md mb-1 text-white">← Planning</a></nav>
+</aside>
+
+<header class="mk-topbar px-4 py-4 lg:pl-64 flex flex-wrap justify-between items-center gap-4">
+    <div>
+        <p class="text-xs text-gray-500"><a href="index.html" class="mk-link">Planning</a> / Camera 203</p>
+        <h1 class="text-xl font-bold flex items-center gap-2 flex-wrap">
+            Soggiorno — Camera 203
+            <span class="mk-pay-icons static inline-flex relative top-0 right-0">
+                <span class="mk-pay-icon mk-pay-icon-room" title="Soggiorno camera pagato"></span>
+                <span class="mk-pay-icon mk-pay-icon-extra" title="Extra da pagare"></span>
+            </span>
+        </h1>
+        <p class="text-sm text-gray-500">HB - TOMMASO · Gruppo <a href="gruppo.html" class="mk-link">Comune Pozzuoli</a></p>
+    </div>
+    <div class="flex gap-2 flex-wrap">
+        <a href="gruppo.html" class="mk-btn-secondary text-sm">Conto gruppo</a>
+        <a href="checkin.html" class="mk-btn-secondary text-sm">Vedi check-in</a>
+        <button class="mk-btn-secondary text-sm">Incassa solo camera</button>
+        <button class="mk-btn-secondary text-sm">Incassa solo extra</button>
+        <a href="checkout.html" class="mk-btn-primary text-sm">Procedi check-out</a>
+    </div>
+</header>
+
+<main class="flex-1 p-4 md:p-6 lg:pl-72 space-y-6">
+
+    <div class="mk-pay-status-bar">
+        <span class="mk-pay-chip mk-pay-chip-room-ok"><span class="mk-pay-icon mk-pay-icon-room"></span> Soggiorno camera: <strong>pagato</strong> (€ 360,00) — incassato 09/10/2026 17:40 · Operatore Lucia Verdi</span>
+        <span class="mk-pay-chip mk-pay-chip-extra-due"><span class="mk-pay-icon mk-pay-icon-extra"></span> Extra: <strong>da pagare</strong> (€ 60,00)</span>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-4">
+        <div class="mk-card p-6">
+            <div class="flex justify-between items-start mb-4">
+                <h2 class="font-semibold">Check-in</h2>
+                <a href="checkin.html" class="mk-link text-sm">Scheda completa →</a>
+            </div>
+            <dl class="grid grid-cols-2 gap-3 text-sm">
+                <dt class="text-gray-500">Check-in</dt><dd>25/08/2026</dd>
+                <dt class="text-gray-500">Check-out previsto</dt><dd>10/10/2026</dd>
+                <dt class="text-gray-500">PAX</dt><dd>3</dd>
+                <dt class="text-gray-500">Trattamento</dt><dd>HB</dd>
+                <dt class="text-gray-500">Etichetta gruppo</dt><dd>Comune Pozzuoli</dd>
+                <dt class="text-gray-500">Colore planning</dt><dd><span class="inline-block w-4 h-4 rounded bg-indigo-500 align-middle"></span> Viola gruppo A</dd>
+            </dl>
+        </div>
+        <div class="mk-card p-6">
+            <h2 class="font-semibold mb-4">Conto camera 203</h2>
+            <div class="mk-summary-row"><span class="label">Soggiorno camera</span><span class="value text-green-600">€ 360,00 <span class="mk-badge mk-badge-success text-xs ml-1">Pagato</span></span></div>
+            <div class="mk-summary-row"><span class="label">Extra e consumazioni</span><span class="value text-amber-600">€ 60,00 <span class="mk-badge mk-badge-warning text-xs ml-1">Da pagare</span></span></div>
+            <div class="mk-summary-row"><span class="label">Totale soggiorno</span><span class="value text-indigo-600">€ 420,00</span></div>
+            <div class="mk-summary-row negative"><span class="label">Residuo da incassare</span><span class="value">€ 60,00</span></div>
+            <p class="text-xs text-gray-500 mt-3">Pagamento camera durante il soggiorno: visibile in planning con icona verde ✓. Extra in sospeso: icona arancione €.</p>
+        </div>
+    </div>
+
+    <div class="mk-card overflow-hidden">
+        <div class="px-6 py-4 border-b flex justify-between items-center">
+            <h2 class="font-semibold">Extra e consumazioni (da listino)</h2>
+            <button class="mk-btn-secondary text-sm">+ Aggiungi extra</button>
+        </div>
+        <table class="mk-table">
+            <thead><tr><th>Data</th><th>Ora</th><th>Voce listino</th><th>Descrizione</th><th>Q.tà</th><th>Prezzo</th><th>Importo</th><th>Pagamento</th><th></th></tr></thead>
+            <tbody>
+                <tr><td>08/10/2026</td><td class="col-time">08:15</td><td>BAR-CAFF</td><td>Caffè bar</td><td>2</td><td>€ 2,50</td><td>€ 5,00</td><td><span class="mk-badge mk-badge-warning">Da pagare</span></td><td><a href="#" class="mk-link text-sm">Modifica</a></td></tr>
+                <tr><td>09/10/2026</td><td class="col-time">11:05</td><td>SRV-LATE</td><td>Late check-out</td><td>1</td><td>€ 35,00</td><td>€ 35,00</td><td><span class="mk-badge mk-badge-warning">Da pagare</span></td><td><a href="#" class="mk-link text-sm">Modifica</a></td></tr>
+                <tr><td>09/10/2026</td><td class="col-time">19:22</td><td>BAR-ACQ</td><td>Acqua 0,5L</td><td>4</td><td>€ 2,00</td><td>€ 8,00</td><td><span class="mk-badge mk-badge-warning">Da pagare</span></td><td><a href="#" class="mk-link text-sm">Modifica</a></td></tr>
+                <tr><td>07/10/2026</td><td class="col-time">14:30</td><td>SRV-PAR</td><td>Parcheggio</td><td>3</td><td>€ 4,00</td><td>€ 12,00</td><td><span class="mk-badge mk-badge-warning">Da pagare</span></td><td><a href="#" class="mk-link text-sm">Modifica</a></td></tr>
+            </tbody>
+            <tfoot class="bg-gray-50 font-semibold"><tr><td colspan="6" class="text-right">Totale extra</td><td>€ 60,00</td><td colspan="2"></td></tr></tfoot>
+        </table>
+        <p class="px-6 py-3 text-xs text-gray-500 border-t">L’ora indica il momento di registrazione dell’extra (turno reception / bar).</p>
+    </div>
+
+    <div class="mk-card p-6">
+        <h2 class="font-semibold mb-3">Soggiorno camera (dettaglio pagamento)</h2>
+        <table class="mk-table text-sm">
+            <thead><tr><th>Voce</th><th>Importo</th><th>Stato</th><th>Data incasso</th><th>Ora</th><th>Operatore</th></tr></thead>
+            <tbody>
+                <tr><td>Soggiorno HB — 15 notti</td><td>€ 360,00</td><td><span class="mk-badge mk-badge-success">Pagato</span></td><td>09/10/2026</td><td class="col-time">17:40</td><td>Lucia Verdi</td></tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+</div>
+<script src="../assets/js/navigation.js"></script>
+</body></html>

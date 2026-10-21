@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Check-in — Hotel Tempio V2</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.bunny.net/css?family=inter:400,500,600,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/mockup.css">
+</head>
+<body class="mockup min-h-screen" data-page="planning">
+<div class="mk-preview-banner">Anteprima V2</div>
+<div class="lg:pl-64 min-h-screen flex flex-col">
+
+<aside id="sidebar" class="mk-sidebar fixed inset-y-0 left-0 z-40 w-64 flex flex-col transform transition-transform duration-200 -translate-x-full lg:translate-x-0">
+    <nav class="flex-1 p-3 pt-4 overflow-y-auto">
+        <a href="index.html" data-nav="planning" class="flex px-3 py-2.5 text-sm rounded-md mb-1 text-white">← Planning</a>
+    </nav>
+</aside>
+
+<header class="mk-topbar px-4 py-4 lg:pl-64 flex flex-wrap justify-between items-center gap-4">
+    <div>
+        <p class="text-xs text-gray-500"><a href="index.html" class="mk-link">Planning</a> / Check-in</p>
+        <h1 class="text-xl font-bold text-gray-900" id="page-title">Scheda check-in</h1>
+        <p class="text-sm text-gray-500" id="page-sub">Camera 203 · registrato il 25/08/2026</p>
+    </div>
+    <div class="flex gap-2" id="header-actions">
+        <a href="soggiorno.html" class="mk-btn-secondary text-sm">Scheda soggiorno</a>
+        <a href="checkin.html?nuovo=1" class="mk-btn-primary text-sm">+ Nuovo check-in</a>
+    </div>
+</header>
+
+<main class="flex-1 p-4 md:p-6 lg:pl-72 space-y-6">
+
+    <!-- Vista consultazione check-in esistente -->
+    <div id="view-checkin">
+        <div class="flex items-center gap-3 mb-4">
+            <span class="mk-badge mk-badge-success">Check-in effettuato</span>
+            <span class="mk-badge mk-badge-info">In soggiorno</span>
+            <span class="text-sm text-gray-500">Operatore: Lucia Verdi · 25/08/2026 14:35</span>
+        </div>
+
+        <div class="grid lg:grid-cols-3 gap-4">
+            <div class="lg:col-span-2 mk-card p-6">
+                <h2 class="font-semibold text-lg mb-4">Dati ospite e soggiorno</h2>
+                <dl class="grid sm:grid-cols-2 gap-x-6 gap-y-4 text-sm">
+                    <div><dt class="text-gray-500 mb-0.5">Camera</dt><dd class="font-semibold text-lg">203</dd></div>
+                    <div><dt class="text-gray-500 mb-0.5">Referente / Ospite</dt><dd class="font-semibold">Tommaso — HB</dd></div>
+                    <div><dt class="text-gray-500 mb-0.5">Data check-in</dt><dd>25/08/2026</dd></div>
+                    <div><dt class="text-gray-500 mb-0.5">Check-out previsto</dt><dd>10/10/2026</dd></div>
+                    <div><dt class="text-gray-500 mb-0.5">N° ospiti (PAX)</dt><dd>3</dd></div>
+                    <div><dt class="text-gray-500 mb-0.5">Trattamento</dt><dd>Half board (HB)</dd></div>
+                    <div><dt class="text-gray-500 mb-0.5">Gruppo planning</dt><dd>Comune Pozzuoli</dd></div>
+                    <div><dt class="text-gray-500 mb-0.5">Etichetta</dt><dd><span class="mk-badge mk-badge-info">Com. Pozzuoli</span></dd></div>
+                    <div><dt class="text-gray-500 mb-0.5">Colore gruppo</dt><dd><span class="inline-block w-5 h-5 rounded bg-indigo-500 align-middle mr-2"></span>Viola — Gruppo A</dd></div>
+                    <div><dt class="text-gray-500 mb-0.5">Tariffa camera/notte</dt><dd>€ 24,00</dd></div>
+                </dl>
+                <div class="mt-6 pt-4 border-t">
+                    <dt class="text-gray-500 text-sm mb-1">Note check-in</dt>
+                    <dd class="text-sm">Gruppo Comune Pozzuoli — camera adiacente 202. Documento identità registrato.</dd>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <div class="mk-card p-5">
+                    <h3 class="font-semibold mb-3">Documenti e pagamenti in ingresso</h3>
+                    <ul class="text-sm space-y-2 text-gray-700">
+                        <li>✓ Documento ospite registrato</li>
+                        <li>✓ Caparra: € 0,00</li>
+                        <li>Metodo: —</li>
+                    </ul>
+                </div>
+                <div class="mk-card p-5">
+                    <h3 class="font-semibold mb-3">Collegamenti</h3>
+                    <a href="soggiorno.html" class="mk-link text-sm block mb-2">→ Extra e conto camera</a>
+                    <a href="checkout.html" class="mk-link text-sm block">→ Check-out</a>
+                </div>
+                <button class="mk-btn-secondary w-full text-sm">Modifica dati check-in</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Form nuovo check-in (query ?nuovo=1) -->
+    <div id="form-checkin" class="hidden max-w-3xl">
+        <div class="mk-card p-6">
+            <h2 class="font-semibold text-lg mb-4">Registra nuovo check-in</h2>
+            <form class="grid md:grid-cols-2 gap-4">
+                <div><label class="text-sm font-medium block mb-1">Camera</label><select class="mk-input"><option>206 — Libera</option><option>207 — Libera</option></select></div>
+                <div><label class="text-sm font-medium block mb-1">Data check-in</label><input type="date" class="mk-input" value="2026-10-12"></div>
+                <div><label class="text-sm font-medium block mb-1">Check-out previsto</label><input type="date" class="mk-input"></div>
+                <div><label class="text-sm font-medium block mb-1">PAX</label><input type="number" class="mk-input" value="2" min="1"></div>
+                <div class="md:col-span-2"><label class="text-sm font-medium block mb-1">Referente / Ospite</label><input class="mk-input" placeholder="Nome cognome o ragione sociale"></div>
+                <div><label class="text-sm font-medium block mb-1">Trattamento</label><select class="mk-input"><option>HB</option><option>BB</option><option>RO</option><option>FB</option></select></div>
+                <div><label class="text-sm font-medium block mb-1">Tariffa/notte (€)</label><input class="mk-input" placeholder="0,00"></div>
+                <div><label class="text-sm font-medium block mb-1">Gruppo</label><select class="mk-input"><option>Nessuno (singolo)</option><option>Comune Pozzuoli — Viola</option><option>Matrimonio Rossi — Verde</option><option>+ Nuovo gruppo</option></select></div>
+                <div><label class="text-sm font-medium block mb-1">Etichetta planning</label><input class="mk-input" placeholder="Es. Com. Pozzuoli"></div>
+                <div class="md:col-span-2"><label class="text-sm font-medium block mb-1">Note check-in</label><textarea class="mk-input" rows="2"></textarea></div>
+                <div class="md:col-span-2 flex gap-3 pt-2">
+                    <button type="button" class="mk-btn-primary">Conferma check-in</button>
+                    <a href="checkin.html" class="mk-btn-secondary">Annulla</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Elenco check-in recenti (sempre visibile in modalità consultazione) -->
+    <div id="list-checkin" class="mk-card overflow-hidden">
+        <div class="px-6 py-4 border-b flex justify-between items-center">
+            <h2 class="font-semibold">Check-in recenti</h2>
+            <a href="checkin.html?nuovo=1" class="mk-link text-sm">Nuovo check-in</a>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="mk-table">
+                <thead><tr><th>Data</th><th>Camera</th><th>Ospite / Gruppo</th><th>PAX</th><th>Check-out prev.</th><th>Stato</th><th></th></tr></thead>
+                <tbody>
+                    <tr><td>25/08/2026</td><td>203</td><td>Tommaso · Comune Pozzuoli</td><td>3</td><td>10/10/2026</td><td><span class="mk-badge mk-badge-info">In soggiorno</span></td><td><a href="checkin.html" class="mk-link text-sm">Vedi</a></td></tr>
+                    <tr><td>22/08/2026</td><td>202</td><td>Di Gennaro · Comune Pozzuoli</td><td>3</td><td>12/09/2026</td><td><span class="mk-badge mk-badge-info">In soggiorno</span></td><td><a href="checkin.html" class="mk-link text-sm">Vedi</a></td></tr>
+                    <tr><td>10/10/2026</td><td>206</td><td>Verdi — Singolo</td><td>2</td><td>12/10/2026</td><td><span class="mk-badge mk-badge-success">Check-in oggi</span></td><td><a href="checkin.html" class="mk-link text-sm">Vedi</a></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+</div>
+<script src="../assets/js/navigation.js"></script>
+<script>
+(function () {
+    var params = new URLSearchParams(window.location.search);
+    var isNuovo = params.get('nuovo') === '1';
+    var view = document.getElementById('view-checkin');
+    var form = document.getElementById('form-checkin');
+    var list = document.getElementById('list-checkin');
+    var title = document.getElementById('page-title');
+    var sub = document.getElementById('page-sub');
+    if (isNuovo) {
+        view.classList.add('hidden');
+        list.classList.add('hidden');
+        form.classList.remove('hidden');
+        title.textContent = 'Nuovo check-in';
+        sub.textContent = 'Assegna camera e dati ospite — compare nel planning';
+    }
+})();
+</script>
+</body></html>

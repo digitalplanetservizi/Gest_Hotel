@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conto gruppo — Comune Pozzuoli</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.bunny.net/css?family=inter:400,500,600,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/mockup.css">
+<style>
+.mk-tab { padding: 8px 16px; border-radius: 8px 8px 0 0; font-size: 14px; font-weight: 500; border: 1px solid #ebe9f1; border-bottom: none; background: #f8f8f8; color: #6e6b7b; }
+.mk-tab.active { background: #fff; color: #7367f0; font-weight: 600; border-bottom: 1px solid #fff; margin-bottom: -1px; }
+</style>
+</head>
+<body class="mockup min-h-screen" data-page="planning">
+<div class="mk-preview-banner">Anteprima V2</div>
+<main class="flex-1 p-4 md:p-6 max-w-5xl mx-auto">
+    <p class="text-sm text-gray-500 mb-2"><a href="index.html" class="mk-link">← Planning</a></p>
+    <h1 class="text-2xl font-bold mb-1">Gruppo — Comune Pozzuoli</h1>
+    <p class="text-gray-600 mb-4">Camere 202, 203, 204 · colore planning viola · etichetta unica</p>
+
+    <div class="flex flex-wrap gap-1 border-b border-gray-200 mb-0">
+        <button type="button" class="mk-tab active">Conto unico gruppo</button>
+        <a href="soggiorno.html" class="mk-tab">Camera 202</a>
+        <a href="soggiorno.html" class="mk-tab">Camera 203</a>
+        <a href="soggiorno.html" class="mk-tab">Camera 204</a>
+    </div>
+
+    <div class="mk-card p-6 rounded-t-none border-t-0">
+        <div class="mk-pay-status-bar">
+            <span class="mk-pay-chip mk-pay-chip-room-ok"><span class="mk-pay-icon mk-pay-icon-room"></span> Soggiorni camere: pagati (€ 1.080,00)</span>
+            <span class="mk-pay-chip mk-pay-chip-extra-due"><span class="mk-pay-icon mk-pay-icon-extra"></span> Extra gruppo: da pagare (€ 142,00)</span>
+        </div>
+
+        <h2 class="font-semibold mb-4">Conto unico — dettaglio per camera</h2>
+        <p class="text-sm text-gray-500 mb-4">Ogni voce indica la camera di riferimento. Gli extra riportano data e ora di registrazione.</p>
+
+        <table class="mk-table text-sm mb-6">
+            <thead><tr><th>Camera</th><th>Voce</th><th>Data</th><th>Ora</th><th>Importo</th><th>Pagamento</th></tr></thead>
+            <tbody>
+                <tr class="bg-indigo-50/40"><td colspan="6" class="font-semibold text-indigo-800">Camera 202 — Di Gennaro</td></tr>
+                <tr><td>202</td><td>Soggiorno HB (15 notti)</td><td>—</td><td>—</td><td>€ 360,00</td><td><span class="mk-badge mk-badge-success">Pagato</span></td></tr>
+                <tr><td>202</td><td>Caffè bar ×2</td><td>08/10/2026</td><td class="col-time">08:15</td><td>€ 5,00</td><td><span class="mk-badge mk-badge-warning">Da pagare</span></td></tr>
+                <tr class="bg-indigo-50/40"><td colspan="6" class="font-semibold text-indigo-800">Camera 203 — Tommaso</td></tr>
+                <tr><td>203</td><td>Soggiorno HB (15 notti)</td><td>—</td><td>—</td><td>€ 360,00</td><td><span class="mk-badge mk-badge-success">Pagato</span> <span class="text-xs text-gray-500">09/10 17:40 · L. Verdi</span></td></tr>
+                <tr><td>203</td><td>Late check-out</td><td>09/10/2026</td><td class="col-time">11:05</td><td>€ 35,00</td><td><span class="mk-badge mk-badge-warning">Da pagare</span></td></tr>
+                <tr><td>203</td><td>Acqua 0,5L ×4</td><td>09/10/2026</td><td class="col-time">19:22</td><td>€ 8,00</td><td><span class="mk-badge mk-badge-warning">Da pagare</span></td></tr>
+                <tr class="bg-indigo-50/40"><td colspan="6" class="font-semibold text-indigo-800">Camera 204 — Gruppo</td></tr>
+                <tr><td>204</td><td>Soggiorno HB (12 notti)</td><td>—</td><td>—</td><td>€ 360,00</td><td><span class="mk-badge mk-badge-success">Pagato</span></td></tr>
+                <tr><td>204</td><td>Parcheggio ×3 gg</td><td>07/10/2026</td><td class="col-time">14:30</td><td>€ 12,00</td><td><span class="mk-badge mk-badge-warning">Da pagare</span></td></tr>
+            </tbody>
+            <tfoot class="font-bold bg-gray-50">
+                <tr><td colspan="4" class="text-right">Totale gruppo</td><td>€ 1.222,00</td><td></td></tr>
+                <tr><td colspan="4" class="text-right text-green-600">Già pagato (camere)</td><td>€ 1.080,00</td><td></td></tr>
+                <tr><td colspan="4" class="text-right text-amber-600">Residuo extra</td><td>€ 142,00</td><td></td></tr>
+            </tfoot>
+        </table>
+
+        <div class="flex flex-wrap gap-3">
+            <button class="mk-btn-primary text-sm">Incassa solo extra gruppo (€ 142,00)</button>
+            <button class="mk-btn-secondary text-sm">Registra pagamento parziale</button>
+        </div>
+    </div>
+</main>
+<script src="../assets/js/navigation.js"></script>
+</body></html>

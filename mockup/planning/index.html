@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Planning — Hotel Tempio V2</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.bunny.net/css?family=inter:400,500,600,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/mockup.css">
+</head>
+<body class="mockup min-h-screen" data-page="planning">
+<div class="mk-preview-banner">Anteprima V2 — Hotel Tempio</div>
+<div class="lg:pl-64 min-h-screen flex flex-col">
+<aside id="sidebar" class="mk-sidebar fixed inset-y-0 left-0 z-40 w-64 flex flex-col transform transition-transform duration-200 -translate-x-full lg:translate-x-0">
+    <div class="p-4 border-b border-white/10"><h1 class="text-lg font-bold text-white">Hotel Tempio</h1><p class="text-xs opacity-70 text-white">V2</p></div>
+    <nav class="flex-1 p-3 overflow-y-auto">
+        <a href="../dashboard.html" data-nav="dashboard" class="flex items-center px-3 py-2.5 text-sm rounded-md mb-1">Dashboard</a>
+        <a href="index.html" data-nav="planning" class="flex items-center px-3 py-2.5 text-sm rounded-md mb-1">Planning</a>
+        <a href="../cassa/index.html" data-nav="cassa" class="flex items-center px-3 py-2.5 text-sm rounded-md mb-1">Cassa</a>
+        <a href="../listino/index.html" data-nav="listino" class="admin-only flex items-center px-3 py-2.5 text-sm rounded-md mb-1">Listino</a>
+        <a href="../causali/index.html" data-nav="causali" class="admin-only flex items-center px-3 py-2.5 text-sm rounded-md mb-1">Causali</a>
+        <a href="../magazzino/index.html" data-nav="magazzino" class="flex items-center px-3 py-2.5 text-sm rounded-md mb-1">Magazzino detersivi</a>
+        <a href="../report/index.html" data-nav="report" class="flex items-center px-3 py-2.5 text-sm rounded-md mb-1">Report</a>
+        <a href="../utenti/index.html" data-nav="utenti" class="admin-only flex items-center px-3 py-2.5 text-sm rounded-md mb-1">Utenti</a>
+        <a href="../impostazioni/index.html" data-nav="impostazioni" class="admin-only flex items-center px-3 py-2.5 text-sm rounded-md mb-1">Impostazioni</a>
+    </nav>
+    <div class="p-3 border-t border-white/10"><a href="../login.html" class="block text-sm text-white px-3 py-2 opacity-80">Esci</a></div>
+</aside>
+<div id="sidebar-overlay" class="hidden fixed inset-0 bg-black/40 z-30 lg:hidden"></div>
+
+<header class="mk-topbar px-4 py-4 flex flex-wrap items-center justify-between gap-4 sticky top-0 z-20">
+    <button id="sidebar-toggle" class="lg:hidden mk-btn-secondary text-sm py-2 px-3">☰</button>
+    <div><h1 class="text-xl font-bold text-gray-900">Planning camere</h1><p class="text-sm text-gray-500">Griglia occupazione · click su blocco per scheda soggiorno</p></div>
+    <div class="flex gap-2">
+        <input type="week" class="mk-input max-w-[160px] text-sm py-2" value="2026-W41">
+        <a href="checkin.html?nuovo=1" class="mk-btn-primary text-sm">+ Check-in</a>
+        <a href="checkin.html" class="mk-btn-secondary text-sm">Vedi check-in</a>
+    </div>
+</header>
+
+<main class="flex-1 p-4 md:p-6">
+    <div class="mk-legend">
+        <span><i style="background:#f3f2f7;border:1px solid #ddd"></i> Libera</span>
+        <span><i style="background:#7367f0"></i> Gruppo A</span>
+        <span><i style="background:#28c76f"></i> Gruppo B</span>
+        <span><i style="background:#1e9ff2"></i> Singolo</span>
+        <span><i style="background:#7367f0;box-shadow:inset 0 0 0 2px #ea5455"></i> Check-out / da pagare</span>
+        <span><span class="mk-pay-icon mk-pay-icon-room"></span> Camera pagata</span>
+        <span><span class="mk-pay-icon mk-pay-icon-extra"></span> Extra da pagare</span>
+    </div>
+    <p class="text-sm mb-3"><a href="gruppo.html" class="mk-link font-medium">Apri conto unico gruppo Comune Pozzuoli (202–204) →</a></p>
+
+    <div class="mk-card p-4 mk-plan-wrap">
+        <table class="mk-plan-table">
+            <thead>
+                <tr>
+                    <th>Camera</th>
+                    <th>8 ott</th><th>9 ott</th><th>10 ott</th><th>11 ott</th><th>12 ott</th><th>13 ott</th><th>14 ott</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="mk-plan-room">202</td>
+                    <td class="mk-plan-cell"><a href="soggiorno.html" class="mk-plan-busy-grp-a">Di Gennaro<span class="mk-pay-icons"><span class="mk-pay-icon mk-pay-icon-room" title="Camera pagata"></span><span class="mk-pay-icon mk-pay-icon-extra" title="Extra da pagare"></span></span><span class="mk-plan-label">Com. Pozzuoli</span></a></td>
+                    <td class="mk-plan-cell"><a href="soggiorno.html" class="mk-plan-busy-grp-a">Di Gennaro<span class="mk-pay-icons"><span class="mk-pay-icon mk-pay-icon-room"></span><span class="mk-pay-icon mk-pay-icon-extra"></span></span><span class="mk-plan-label">Com. Pozzuoli</span></a></td>
+                    <td class="mk-plan-cell"><a href="soggiorno.html" class="mk-plan-busy-grp-a">Di Gennaro</a></td>
+                    <td class="mk-plan-cell"><a href="soggiorno.html" class="mk-plan-busy-grp-a">Di Gennaro</a></td>
+                    <td class="mk-plan-cell"><a href="soggiorno.html" class="mk-plan-busy-grp-a">Di Gennaro</a></td>
+                    <td class="mk-plan-cell mk-plan-free"></td>
+                    <td class="mk-plan-cell mk-plan-free"></td>
+                </tr>
+                <tr>
+                    <td class="mk-plan-room">203</td>
+                    <td class="mk-plan-cell"><a href="soggiorno.html" class="mk-plan-busy-grp-a">Tommaso<span class="mk-plan-label">Com. Pozzuoli</span></a></td>
+                    <td class="mk-plan-cell"><a href="soggiorno.html" class="mk-plan-busy-grp-a">Tommaso</a></td>
+                    <td class="mk-plan-cell"><a href="soggiorno.html" class="mk-plan-busy-grp-a mk-plan-due">Tommaso<span class="mk-pay-icons"><span class="mk-pay-icon mk-pay-icon-room" title="Camera pagata"></span><span class="mk-pay-icon mk-pay-icon-extra" title="Extra da pagare"></span></span><span class="mk-plan-label">OUT oggi</span></a></td>
+                    <td class="mk-plan-cell mk-plan-free"></td>
+                    <td class="mk-plan-cell mk-plan-free"></td>
+                    <td class="mk-plan-cell mk-plan-free"></td>
+                    <td class="mk-plan-cell mk-plan-free"></td>
+                </tr>
+                <tr>
+                    <td class="mk-plan-room">204</td>
+                    <td class="mk-plan-cell"><a href="soggiorno.html" class="mk-plan-busy-grp-a">Gruppo<span class="mk-plan-label">Com. Pozzuoli</span></a></td>
+                    <td class="mk-plan-cell"><a href="soggiorno.html" class="mk-plan-busy-grp-a">Gruppo</a></td>
+                    <td class="mk-plan-cell"><a href="soggiorno.html" class="mk-plan-busy-grp-a">Gruppo</a></td>
+                    <td class="mk-plan-cell mk-plan-free"></td>
+                    <td class="mk-plan-cell mk-plan-free"></td>
+                    <td class="mk-plan-cell mk-plan-free"></td>
+                    <td class="mk-plan-cell mk-plan-free"></td>
+                </tr>
+                <tr>
+                    <td class="mk-plan-room">301</td>
+                    <td class="mk-plan-cell mk-plan-free"></td>
+                    <td class="mk-plan-cell"><a href="soggiorno.html" class="mk-plan-busy-grp-b">Rossi<span class="mk-plan-label">Matrimonio</span></a></td>
+                    <td class="mk-plan-cell"><a href="soggiorno.html" class="mk-plan-busy-grp-b">Rossi</a></td>
+                    <td class="mk-plan-cell"><a href="soggiorno.html" class="mk-plan-busy-grp-b">Rossi</a></td>
+                    <td class="mk-plan-cell mk-plan-free"></td>
+                    <td class="mk-plan-cell mk-plan-free"></td>
+                    <td class="mk-plan-cell mk-plan-free"></td>
+                </tr>
+                <tr>
+                    <td class="mk-plan-room">205</td>
+                    <td class="mk-plan-cell"><a href="soggiorno.html" class="mk-plan-busy-single">Bianchi</a></td>
+                    <td class="mk-plan-cell"><a href="soggiorno.html" class="mk-plan-busy-single mk-plan-due">Bianchi<span class="mk-pay-icons"><span class="mk-pay-icon mk-pay-icon-all" title="Tutto pagato"></span></span><span class="mk-plan-label">Pagato</span></a></td>
+                    <td class="mk-plan-cell mk-plan-free"></td>
+                    <td class="mk-plan-cell mk-plan-free"></td>
+                    <td class="mk-plan-cell mk-plan-free"></td>
+                    <td class="mk-plan-cell mk-plan-free"></td>
+                    <td class="mk-plan-cell mk-plan-free"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <p class="text-xs text-gray-500 mt-3">Etichetta gruppo configurabile in Impostazioni · stesso colore per tutte le camere del gruppo</p>
+</main>
+</div>
+<script src="../assets/js/navigation.js"></script>
+</body></html>
